@@ -41,4 +41,20 @@ class LinkedList
       @head = n
     end
   end
+
+  def at(index)
+    if !(-size..size-1).include?(index)
+      puts "index doesn't exist"
+    elsif index < 0
+      at(size + index)
+    else
+      node = @head
+      i = 0
+      while i < index
+        node = node.next_node
+        i += 1
+      end
+      node.value
+    end
+  end
 end
