@@ -1,14 +1,24 @@
 require_relative "node"
 class LinkedList
-  attr_accessor :head, :tail
+  attr_accessor :size
 
   def initialize
     @head = nil
     @tail = nil
+    @size = 0
+  end
+
+  def head
+    @head.value
+  end
+
+  def tail
+    @tail.value
   end
 
   def append(val)
     n = Node.new
+    @size += 1
     n.value = val
     n.next_node = nil
     if @tail.nil?
@@ -25,6 +35,7 @@ class LinkedList
       append(val)
     else
       n = Node.new
+      @size += 1
       n.value = val
       n.next_node = @head
       @head = n
