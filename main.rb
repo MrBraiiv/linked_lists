@@ -1,8 +1,12 @@
 require_relative "lib/linked_list"
 
-l = LinkedList.new
-l.append(0)
-l.append(1)
-l.append(2)
-l.append(3)
-binding.irb
+list = LinkedList.new
+
+list.append('dog')
+list.append('cat')
+list.append('parrot')
+list.append('hamster')
+list.append('snake')
+list.append('turtle')
+
+puts list.to_s

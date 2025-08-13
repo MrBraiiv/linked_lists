@@ -9,11 +9,19 @@ class LinkedList
   end
 
   def head
-    @head.value
+    if @head.nil?
+      nil
+    else
+      @head.value
+    end
   end
 
   def tail
-    @tail.value
+    if @tail.nil?
+      nil
+    else
+      @tail.value
+    end
   end
 
   def append(val)
@@ -57,4 +65,56 @@ class LinkedList
       node.value
     end
   end
+
+  def pop
+    if size > 1
+      node = @head
+      (size - 2).times { node = node.next_node }
+      node.next_node = nil
+      @tail = node
+    elsif size == 1
+      @head = nil
+      @tail = nil
+    else
+      puts "List empty, nothing popped"
+    end
+    @size -= 1
+  end
+
+  def contain?(val)
+    node = @head
+
+    until node.nil?
+      return true if node.value == val
+
+      node = node.next_node
+    end
+    false
+  end
+
+  def find(val)
+    node = @head
+    ind = 0
+
+    until node.nil?
+      return ind if node.value == val
+
+      node = node.next_node
+      ind += 1
+    end
+    nil
+  end
+
+  def to_s
+    node = @head
+    string = ''
+
+    until node.nil?
+      string << "( #{node.value} ) -> "
+      node = node.next_node
+    end
+    string += "nil"
+  end
+
+
 end
