@@ -113,8 +113,40 @@ class LinkedList
       string << "( #{node.value} ) -> "
       node = node.next_node
     end
-    string += "nil"
+    "#{string}nil"
   end
 
+  def insert_at(value, index)
+    index = size if index >= size
+    insert_node = Node.new
+    node = @head
+    @size += 1
+    insert_node.value = value
+    (index - 1).times { node = node.next_node }
+    insert_node.next_node = node.next_node
+    node.next_node = insert_node
+  end
 
+  def shift
+    return if @head.nil?
+
+    del_node = @head
+    @head = @head.next_node
+    @tail = nil if @head.nil?
+    del_node.next_node = nil
+    @size -= 1
+  end
+
+  def remove_at(index)
+    return shift if index <= 0
+
+    return pop if index >= size
+
+    pre_node = @head
+    (index - 1).times { pre_node = pre_node.next_node }
+    del_node = pre_node.next_node
+    pre_node.next_node = del_node.next_node
+    del_node.next_node = nil
+    @size -= 1
+  end
 end

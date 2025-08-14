@@ -10,3 +10,4 @@ list.append('snake')
 list.append('turtle')
 
 puts list.to_s
+binding.irb
